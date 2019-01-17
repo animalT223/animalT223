@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	"
+	>
+	<context:component-scan base-package="hello"/>
+	<bean class="hello.GreetingLogger"/>
+	
+	
+	<!-- 上机练习2 -->
+	<bean id="zhangGa" class="hello.Greeting" p:person="张嘎" p:words="三天不打小鬼子，手都痒痒！"/>
+	
+	<bean id="greetingDao" class="hello.impl.GreetingDao"></bean>
+	<bean id="greetingService" class="hello.impl.GreetingService" p:Dao-ref="greetingDao"/>
+	<aop:aspectj-autoproxy/>
+</beans>

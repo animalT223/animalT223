@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+	"
+	>
+	
+	<bean id="helloSpring" class="hello.HelloSpring">
+		<property name="who">
+			<value>哈哈helloSpring</value>
+		</property>
+	</bean>
+	<!-- 上机练习1 -->
+	<bean id="zhangGa" class="hello.Greeting">
+		<property name="person">
+			<value>张嘎</value>
+		</property>
+		<property name="words">
+			<value>三天不打小鬼子，手都痒痒！</value>
+		</property>
+	</bean>
+	<bean id="rod" class="hello.Greeting">
+		<property name="person">
+			<value>Rod</value>
+		</property>
+		<property name="words">
+			<value>世界上有10种人，认识二进制和不认识二进制的。</value>
+		</property>
+	</bean>
+	<!-- 上机练习2 -->
+	<bean id="colorInk" class="print.dao.impl.ColorInk" />
+	<bean id="greyInk" class="print.dao.impl.GreyInk" />
+	<bean id="a4Paper" class="print.dao.impl.TestPaper">
+		<property name="charPerLine" value="10"/>
+		<property name="linePerPage" value="8"/>
+	</bean>
+	<bean id="b5Paper" class="print.dao.impl.TestPaper">
+		<property name="charPerLine" value="6"/>
+		<property name="linePerPage" value="5"/>
+	</bean>
+		<!-- 组装打印机 -->
+	<bean id="printer" class="print.entity.Printer">
+		<property name="ink" ref="colorInk"/>
+		<property name="paper" ref="b5Paper"/>
+	</bean>
+	
+	<!-- 上机练习3 -->
+	<bean id="dao" class="user.dao.impl.UserDaoImpl"/>
+	<bean id="service" class="user.service.impl.UserServiceImpl">
+		<property name="dao" ref="dao"></property>
+	</bean>
+	<bean id="theLogger" class="user.service.UserServiceLogger"></bean>
+	<aop:config>
+		<aop:pointcut expression="execution(public void addNewUser())" id="pointcut"/>
+		<aop:aspect ref="theLogger">
+			<aop:before method="before" pointcut-ref="pointcut"/>
+			<aop:after-returning method="afterReturning" pointcut-ref="pointcut" returning="result"/>
+		</aop:aspect>
+	</aop:config>
+	<!-- 简答题3 -->
+	<bean id="zhanshenArmet" class="game.entity.Equip">
+		<property name="name" value="战神头盔"/>
+		<property name="type" value="头盔"/>
+		<property name="speedPlus" value="2"/>
+		<property name="attackPlus" value="4"/>
+		<property name="defencePlus" value="6"/>
+	</bean>
+	<bean id="lianhuanLoricae" class="game.entity.Equip">
+		<property name="name" value="连环锁子甲"/>
+		<property name="type" value="铠甲"/>
+		<property name="speedPlus" value="6"/>
+		<property name="attackPlus" value="4"/>
+		<property name="defencePlus" value="15"/>
+	</bean>
+	<bean id="bosiBoot" class="game.entity.Equip">
+		<property name="name" value="波斯追风靴"/>
+		<property name="type" value="靴子"/>
+		<property name="speedPlus" value="8"/>
+		<property name="attackPlus" value="2"/>
+		<property name="defencePlus" value="3"/>
+	</bean>
+	<bean id="lanmoRing" class="game.entity.Equip">
+		<property name="name" value="蓝魔指环"/>
+		<property name="type" value="指环"/>
+		<property name="speedPlus" value="8"/>
+		<property name="attackPlus" value="12"/>
+		<property name="defencePlus" value="2"/>
+	</bean>
+	<bean id="zhangsan" class="game.entity.Player">
+		<property name="armet" ref="zhanshenArmet"/>
+		<property name="loricae" ref="lianhuanLoricae"/>
+		<property name="boot" ref="bosiBoot"/>
+		<property name="rings" ref="lanmoRing"/>
+	</bean>
+</beans>

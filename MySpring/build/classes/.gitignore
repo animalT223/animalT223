@@ -1,0 +1,14 @@
+/applicationContext-MyBatis.xml
+/applicationContext-Spring.xml
+/applicationContext-p.xml
+/applicationContext-smbms.xml
+/applicationContext.xml
+/game
+/game.xml
+/hello
+/log4j.properties
+/mybatis-config.xml
+/print
+/smbms
+/test
+/user

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="smbms.dao.UserMapper">
+	<resultMap type="smbms.entity.User" id="userList">
+		<result property="userRoleName" column="roleName"/>
+	</resultMap>
+	<!-- 查询用户列表 -->
+	<select id="getUserList" resultMap="userList" parameterType="smbms.entity.User">
+		SELECT  u.id,u.userCode,u.userName,u.gender,u.birthday,u.phone,r.roleName as userRoleName FROM smbms_user as u INNER JOIN smbms_role as r ON u.userRole=r.id  
+		<where>
+		<if test="userRole!=null">
+		AND u.userRole=#{userRole} 
+		</if>
+		<if test="userName!=null and userName!=''">
+		AND userName LIKE CONCAT('%',#{userName},'%') 
+		</if>
+		</where>
+		 ORDER BY u.id DESC
+	</select>
+	
+</mapper>

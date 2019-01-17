@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+
+<configuration>
+	<!-- 设置自动映射级别    为自动映射 -->
+	<settings>
+		<setting name="autoMappingBehavior" value="FULL"/>
+	</settings>
+	
+	<!-- 实体类设置别名 -->
+	
+    <!-- 配置数据连接信息 -->
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://localhost:3306/t223?characterEncoding=UTF-8" />
+				<property name="username" value="bankMaster" />
+				<property name="password" value="1234" />
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<!-- SQL语句映射信息 -->
+	<mappers>
+		<mapper resource="smbms/dao/UserMapper.xml" />
+	</mappers>
+	
+</configuration>

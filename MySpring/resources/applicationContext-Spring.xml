@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+	"
+	>
+	<!-- 上机练习1 -->
+	 <bean id="zhangGa" class="hello.Greeting">
+		<constructor-arg index="0">
+			<value>张嘎</value>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<value>三天不打小鬼子，手都痒痒！</value>
+		</constructor-arg>
+	</bean>
+<!-- 	<bean id="rod" class="hello.Greeting"> -->
+<!-- 		<property name="person"> -->
+<!-- 			<value>Rod</value> -->
+<!-- 		</property> -->
+<!-- 		<property name="words"> -->
+<!-- 			<value>世界上有10种人，认识二进制和不认识二进制的。</value> -->
+<!-- 		</property> -->
+<!-- 	</bean>  -->
+	
+	<bean id="greetingDao" class="hello.impl.GreetingDao"></bean>
+	<bean id="greetingService" class="hello.impl.GreetingService">
+		<constructor-arg>
+			<ref bean="greetingDao"/>
+		</constructor-arg>
+	</bean>
+	
+	
+</beans>
