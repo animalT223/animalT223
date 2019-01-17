@@ -4,7 +4,7 @@ public class HelloSpring {
 	private String who=null;
 	
 	public void print(){
-		System.out.println("hello~"+who+"~");
+		System.out.println("test刘诗樱hello~"+who+"~");
 	}
 
 	public String getWho() {
